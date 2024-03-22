@@ -5,9 +5,10 @@ const arrayNuovo = [];
 for (let i = 0; i < arrayStringhe.length; i++) {
     let arraySingolaStringa = arrayStringhe[i].toLocaleLowerCase();
     let letteraPrima = arraySingolaStringa.charAt(0).toUpperCase() + arraySingolaStringa.slice(1)
-    
-    console.log(letteraPrima);
+
+    arrayNuovo.push(letteraPrima);
 }
+console.log(arrayNuovo);
 
 
 
