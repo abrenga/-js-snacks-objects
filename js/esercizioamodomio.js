@@ -1,6 +1,7 @@
 const animals = [
 
 ];
+let prossimoId = 0;
 
 
 let btnAdd = document.getElementById("btnAdd");
@@ -20,6 +21,7 @@ function estrapolaDati() {
     let inputClass = document.getElementById("inpClass");
 
     animals.push({
+        id: prossimoId++,
         nome: inputName.value,
         famiglia: inputFam.value,
         classe: inputClass.value
@@ -32,16 +34,16 @@ function estrapolaDati() {
 function aggiungiCard() {
     svuotaCard();
     animals.forEach(animal => {
-        createCardHTML(animal.nome, animal.famiglia, animal.classe);
+        createCardHTML(animal.id, animal.nome, animal.famiglia, animal.classe);
 
     });
 
 }
 
 
-function createCardHTML(nome, famiglia, classe) {
+function createCardHTML(id, nome, famiglia, classe) {
     let colCard = document.getElementById("colCard");
-    colCard.innerHTML += `<div class="col">
+    colCard.innerHTML += `<div class="col" id="card-${id}">
                                <div class="card">
                                 <button id="btnClose" type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
                                     aria-label="Close"></button>
@@ -52,11 +54,36 @@ function createCardHTML(nome, famiglia, classe) {
                                     <p class="card-text">${classe}</p>
                                 </div>
                                 </div>`
+    legaBottone(id);
+};
+
+function legaBottone(idOg) {
+    let bthCloseCard = document.getElementById("btnClose");
+    bthCloseCard.addEventListener("click", (e) => {
+        const id = idOg;
+        for (let i = 0; i < animals.length; i++) {
+            if (id == animals[i].id) {
+                animals.splice(i);
+                const card = document.getElementById(`card-${id}`);
+                card.remove();
+                return;
+            }
+
+
+        }
+
+
+    })
 }
+
+
+
 
 function svuotaCard() {
     let colCard = document.getElementById("colCard");
     colCard.innerHTML = "";
 }
+
+
 
 
