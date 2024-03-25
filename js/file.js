@@ -2,14 +2,14 @@
 
 const arrayStringhe = ["pippo", "PLUTO", "Paperino"];
 const arrayNuovo = [];
-for (let i = 0; i < arrayStringhe.length; i++) {
-    let arraySingolaStringa = arrayStringhe[i].toLocaleLowerCase();
-    let letteraPrima = arraySingolaStringa.charAt(0).toUpperCase() + arraySingolaStringa.slice(1)
+function mettiTuttoMaiuscolo() {
+    for (let i = 0; i < arrayStringhe.length; i++) {
+        let arraySingolaStringa = arrayStringhe[i].toLocaleLowerCase();
+        let letteraPrima = arraySingolaStringa.charAt(0).toUpperCase() + arraySingolaStringa.slice(1)
 
-    arrayNuovo.push(letteraPrima);
+        arrayNuovo.push(letteraPrima);
+    }
 }
-console.log(arrayNuovo);
-
 
 
 /*Jsnack 3 esercizio base */
@@ -50,15 +50,15 @@ let animali = [
 
 
 const arrayStr = [];
-for (let i = 0; i < animali.length; i++) {
-    if (animali[i].classe == "mammifero") {
-        arrayStr.push(animali[i]);
+function animali() {
+    for (let i = 0; i < animali.length; i++) {
+        if (animali[i].classe == "mammifero") {
+            arrayStr.push(animali[i]);
+        }
+
+
     }
-
-
 }
-
-console.log(arrayStr);
 
 
 
@@ -92,16 +92,19 @@ let persona = [
 
 let arrayPersona = [];
 
-for (let i = 0; i < persona.length; i++) {
-    if (persona[i].eta < 18) {
-        arrayPersona.push("il sig/ra" + " " + persona[i].nome + " " + persona[i].cognome + " non può guidare");
-    } else {
-        arrayPersona.push("il sig/ra" + " " + persona[i].nome + " " + persona[i].cognome + " può guidare");;
+function persone() {
+    for (let i = 0; i < persona.length; i++) {
+        if (persona[i].eta < 18) {
+            arrayPersona.push("il sig/ra" + " " + persona[i].nome + " " + persona[i].cognome + " non può guidare");
+        } else {
+            arrayPersona.push("il sig/ra" + " " + persona[i].nome + " " + persona[i].cognome + " può guidare");;
+        }
     }
 }
 
 
-console.log(arrayPersona)
+
+
 
 
 
