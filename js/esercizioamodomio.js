@@ -5,6 +5,8 @@ let prossimoId = 0;
 
 
 let btnAdd = document.getElementById("btnAdd");
+let btnClose;
+
 
 btnAdd.addEventListener("click", (e) => {
     const animale = estrapolaDati();
@@ -42,28 +44,31 @@ function estrapolaDati() {
     return animale;
 
 
-
-
 }
 
+/*Crea L'HTML */
 function creaCardHTML(animal) {
     const divPadre = document.getElementById("colCard");
     divPadre.innerHTML += `<div  class="col">
     <div class="card">
-        <button ${animal.id} type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
+        <button id="card-${animal.id}" type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
             aria-label="Close"></button>
         <div class="card-body toast-container position-static">
-
             <h5 class="card-title">${animal.nome}</h5>
             <p class="card-text">${animal.famiglia}</p>
             <p class="card-text">${animal.classe}</p>
         </div>`
 
+         btnClose= document.getElementById(`card-${animal.id}`)
+         btnClose.addEventListener("click", (e)=>{
+            alert("forse va")
+        })
+        
 };
 
 
 
-
+/*questa funzione verifica solo se nel array è gia presente un nome di animale uguale a quello inserito */
 function ePresente(animale) {
     for (let i = 0; i < animals.length; i++) {
         let animaleCorrente = animals[i];
@@ -74,4 +79,14 @@ function ePresente(animale) {
 }
 
 
-/*Devo solo implementare il bottone che chiude le card lo farè nelle prossime ore mi sta dando parecchia difficoltà se non riesco aprirè un task */
+/*Prendendo il bottone che sarà vario per ciascuna card devo cliccare sopra e chiudere la card
+quindi dovrò conrollare che:
+il bottone che ho cliccato chiuda esattamente il bottone associato alla card in questione */
+
+//come posso prendere in modo dinamico l'id?
+
+
+
+
+
+
