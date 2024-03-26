@@ -46,24 +46,34 @@ function estrapolaDati() {
 
 }
 
+let test = [];
+
 /*Crea L'HTML */
 function creaCardHTML(animal) {
     const divPadre = document.getElementById("colCard");
-    divPadre.innerHTML += `<div  class="col">
+   /* divPadre.innerHTML += `<div id="cardId-${animal.id}"  class="col">
     <div class="card">
-        <button id="card-${animal.id}" type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
+        <button id="card-${animal.id}" type="button" class="btn-close me-2 m-auto" 
             aria-label="Close"></button>
         <div class="card-body toast-container position-static">
             <h5 class="card-title">${animal.nome}</h5>
             <p class="card-text">${animal.famiglia}</p>
             <p class="card-text">${animal.classe}</p>
-        </div>`
-
-         btnClose= document.getElementById(`card-${animal.id}`)
-         btnClose.addEventListener("click", (e)=>{
-            alert("forse va")
-        })
+        </div>` */
+    
+    
+    test.push(document.getElementById(`cardId-${animal.id}`))
+    btnClose = document.getElementById(`card-${animal.id}`)
+    btnClose.addEventListener("click", (e) => {
+        console.log(animal)
+        for (let i = 0; i < animals.length; i++){
+            if (animals[i].id == animal.id) {
+                alert("ecco l'id: "+animal.id);
+            }
+        }
         
+    })
+
 };
 
 
