@@ -23,7 +23,7 @@ function creaAnimale(nome, famiglia, classe) {
         famiglia: famiglia,
         classe: classe
     };
-
+    /*la condizione se vine e verificata ci da l'allert */
     const animalepresente = ePresente(animale)
     if (animalepresente) {
         alert("hai gia inserito quest'animale");
@@ -51,30 +51,80 @@ let test = [];
 /*Crea L'HTML */
 function creaCardHTML(animal) {
     const divPadre = document.getElementById("colCard");
-   /* divPadre.innerHTML += `<div id="cardId-${animal.id}"  class="col">
-    <div class="card">
-        <button id="card-${animal.id}" type="button" class="btn-close me-2 m-auto" 
-            aria-label="Close"></button>
-        <div class="card-body toast-container position-static">
-            <h5 class="card-title">${animal.nome}</h5>
-            <p class="card-text">${animal.famiglia}</p>
-            <p class="card-text">${animal.classe}</p>
-        </div>` */
-    
-    
-    test.push(document.getElementById(`cardId-${animal.id}`))
-    btnClose = document.getElementById(`card-${animal.id}`)
-    btnClose.addEventListener("click", (e) => {
-        console.log(animal)
-        for (let i = 0; i < animals.length; i++){
-            if (animals[i].id == animal.id) {
-                alert("ecco l'id: "+animal.id);
+    /* divPadre.innerHTML += `<div id="cardId-${animal.id}"  class="col">
+     <div class="card">
+         <button id="card-${animal.id}" type="button" class="btn-close me-2 m-auto" 
+             aria-label="Close"></button>
+         <div class="card-body toast-container position-static">
+             <h5 class="card-title">${animal.nome}</h5>
+             <p class="card-text">${animal.famiglia}</p>
+             <p class="card-text">${animal.classe}</p>
+         </div>` */
+
+    /*Qui dobbiamo creare ogni singolo elemento altrimenti non p possibile usare un id dinamico */
+    const col = document.createElement('div');
+    col.id = `card-${animal.id}`;
+    col.classList.add("col");
+
+    const card = document.createElement('div');
+    card.classList.add("card");
+
+    const closeButton = document.createElement('button');
+    closeButton.id = `btnClose-${animal.id}`;
+    closeButton.ariaLabel = "Close";
+    closeButton.type = "button";
+    closeButton.classList.add("btn-close");
+    closeButton.classList.add("me-2");
+    closeButton.classList.add("m-auto");
+    legaBottone(closeButton, animal);
+
+    const cardBody = document.createElement('div');
+    cardBody.classList.add("card-body");
+    cardBody.classList.add("position-static");
+
+    const title = document.createElement('h5');
+    title.classList.add("card-title");
+    title.textContent = animal.nome;
+
+
+    const fam = document.createElement('p');
+    fam.classList.add("card-text");
+    fam.textContent = animal.famiglia;
+
+    const classE = document.createElement('p');
+    classE.classList.add("card-text");
+    classE.textContent = animal.classe;
+
+    cardBody.appendChild(title);
+    cardBody.appendChild(fam);
+    cardBody.appendChild(classE);
+
+    card.appendChild(closeButton);
+    card.appendChild(cardBody);
+
+    col.appendChild(card);
+
+    colCard.appendChild(col);
+};
+
+
+
+/*La funzione lega il bottone alla relativa card tramite l'ID */
+function legaBottone(button, animal) {
+
+    button.addEventListener("click", (e) => {
+        const a = animal;
+
+        for (let i = 0; i < animals.length; i++) {
+            if (a.id == animals[i].id) {
+                animals.splice(i, 1);
+                const card = document.getElementById(`card-${a.id}`);
+                card.remove();
+                return;
             }
         }
-        
-    })
-
-};
+    });
+}
 
 
 
@@ -89,11 +139,7 @@ function ePresente(animale) {
 }
 
 
-/*Prendendo il bottone che sarà vario per ciascuna card devo cliccare sopra e chiudere la card
-quindi dovrò conrollare che:
-il bottone che ho cliccato chiuda esattamente il bottone associato alla card in questione */
 
-//come posso prendere in modo dinamico l'id?
 
 
 
